@@ -1,0 +1,43 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<style>
+    .home-container{
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+    }
+</style>
+
+{% if page == 'login' %}
+<div>
+    <form method="Post" action=""> 
+        {% csrf_token %}
+
+        <label>Username: </label>
+        <input type="text" name="username" placeholder="Enter Username id"/>
+
+        <label>Password: </label>     
+        <input type="password" name="password" placeholder="Enter Password"/>
+
+        <input type="submit" value="Submit"/>
+    </form>
+    <p>Haven't signed up yet??</p>
+    <a href="{% url 'register' %}">Sign Up</a>
+</div>
+
+{% else %}
+
+<div>
+    <form method="Post" action=""> 
+        {% csrf_token %}
+        {{form.as_p}}
+        
+        <input type="submit" value="Register"/>
+    </form>
+    <p>Already signed up ??</p>
+    <a href="{% url 'login' %}">LogIn</a>
+</div>
+
+{% endif %}
+
+{% endblock %}
